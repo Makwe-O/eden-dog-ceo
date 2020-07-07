@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Paw from '../../assests/paw.svg';
 import Input from '../common/Input';
 import Button from '../common/Button';
@@ -7,8 +8,10 @@ const Header = () => {
     <div className="header">
       <div className="container header__intro">
         <div className="header__logo">
-          <img src={Paw} alt="doggo logo" width="40px" />
-          <span className="header__logo-text">Doggo</span>
+          <Link to="/">
+            <img src={Paw} alt="doggo logo" width="40px" />
+            <span className="header__logo-text">Doggo</span>
+          </Link>
         </div>
         <div>
           <p className="header__logo-subtext">

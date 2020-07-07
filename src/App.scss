@@ -1,5 +1,6 @@
 .header {
   height: 60vh;
+  margin-bottom: 60px;
   background-image: url(./assests/dog.jpg);
   background-position: center;
   background-size: cover;
@@ -39,6 +40,12 @@
     border: none;
     width: 100%;
     max-width: 600px;
+    @media only screen and (max-width: 768px) {
+      max-width: 350px;
+    }
+    @media only screen and (max-width: 480px) {
+      max-width: 250px;
+    }
   }
   button {
     width: fit-content;
@@ -66,6 +73,9 @@
   background-clip: border-box;
   max-width: 350px;
   border-radius: 8px;
+  transition: 0.3s;
+  top: 0;
+  position: relative;
   img {
     flex-shrink: 0;
     width: 100%;
@@ -74,6 +84,10 @@
     border: none;
     border-radius: 3px;
     vertical-align: middle;
+  }
+  &:hover {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+    top: -3px;
   }
 }
 
@@ -88,5 +102,31 @@
     grid-row-gap: 3rem;
     row-gap: 3rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.single {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  @media only screen and (max-width: 480px) {
+    flex-direction: column;
+  }
+  &__dog {
+    height: 400px;
+    width: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  &__side {
+    width: 50%;
+    @media only screen and (max-width: 480px) {
+      width: 100%;
+    }
+  }
+  &__text {
+    text-align: center;
   }
 }
