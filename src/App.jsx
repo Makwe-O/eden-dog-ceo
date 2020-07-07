@@ -1,13 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
+import './App.scss';
+import './reset.css';
+import Header from './components/header';
 import { publicRoutes } from './routes';
 function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Welcome to Doggo</h1>
+        <Header />
       </div>
       <Switch>
         {publicRoutes.map((route, index) => {
