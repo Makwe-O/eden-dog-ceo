@@ -5,6 +5,7 @@ import './reset.css';
 import Header from './components/header';
 import Footer from './components/Footer';
 import ScrollToTop from 'react-scroll-up';
+import NotFound from './pages/NotFound';
 import Top from './assests/top.svg';
 import { publicRoutes } from './routes';
 function App() {
@@ -29,6 +30,9 @@ function App() {
             />
           );
         })}
+        <Route path="*">
+          <NotFound />
+        </Route>
       </Switch>
       <Footer />
     </Router>
