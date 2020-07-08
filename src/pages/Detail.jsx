@@ -1,8 +1,6 @@
 import React from 'react';
 
 const Detail = ({ match, location }) => {
-  console.log(location);
-
   return (
     <div className="container">
       <div className="single">

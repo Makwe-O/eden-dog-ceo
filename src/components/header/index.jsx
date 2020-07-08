@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Paw from '../../assests/paw.svg';
 import Input from '../common/Input';
 import Button from '../common/Button';
 const Header = () => {
+  const history = useHistory();
+  const [search, setSearch] = useState('');
+  const handleSearch = () => {
+    history.push(`/search/${search}`);
+  };
   return (
     <div className="header">
       <div className="container header__intro">
@@ -22,8 +28,12 @@ const Header = () => {
           </p>
         </div>
         <div className="header__search">
-          <Input placeholder="Type a specie of dog... e.g Corgi" />
-          <Button text="Search" btnStyle="btn" />
+          <Input
+            placeholder="Type a specie of dog... e.g Corgi"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Button text="Search" btnStyle="btn" onClick={handleSearch} />
         </div>
       </div>
     </div>

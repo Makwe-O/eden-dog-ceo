@@ -8,12 +8,16 @@ export default function useGetDogs(searchTerm = 'corgi', pageNumber = 0) {
   let start = pageNumber;
   let end = pageNumber + 8;
   useEffect(() => {
+    setDogs([]);
+  }, [searchTerm]);
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       const data = await makeRequest(`/breed/${searchTerm}/images`);
 
       setDogs((prevDogs) => [...prevDogs, ...data.message.slice(start, end)]);
       setHasMore(pageNumber < data.message.length);
+
       setLoading(false);
     };
     try {
@@ -21,7 +25,7 @@ export default function useGetDogs(searchTerm = 'corgi', pageNumber = 0) {
     } catch (error) {
       console.log('An error occured', error);
     }
-  }, [pageNumber]);
+  }, [pageNumber, end, searchTerm, start]);
 
   return { loading, dogs, hasMore };
 }

@@ -1,4 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
+import Skeleton from 'react-loading-skeleton';
+
 import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import useGetDogs from '../hooks/useGetDogs';
@@ -13,6 +15,7 @@ const Home = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
+          // Api is not paginated so I faked timeout for fetch pagination
           setTimeout(
             () => setPageNumber((prevPageNumber) => prevPageNumber + 8),
             2000,
@@ -36,16 +39,20 @@ const Home = () => {
               <Card img={dog} />
             </Link>
           ) : (
-            <Link
-              to={{ pathname: `/dog/${index}`, image: dog }}
-              key={index}
-              ref={lastDogElementRef}>
+            <Link to={{ pathname: `/dog/${index}`, image: dog }} key={index}>
               <Card img={dog} />
             </Link>
           ),
         )}
+        {hasMore && (
+          <>
+            <Skeleton height={220} />
+            <Skeleton height={220} />
+            <Skeleton height={220} />
+            <Skeleton height={220} />
+          </>
+        )}
       </div>
-      {loading && <p>Loading</p>}
     </div>
   );
 };
