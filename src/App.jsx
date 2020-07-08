@@ -4,6 +4,8 @@ import './App.scss';
 import './reset.css';
 import Header from './components/header';
 import Footer from './components/Footer';
+import ScrollToTop from 'react-scroll-up';
+import Top from './assests/top.svg';
 import { publicRoutes } from './routes';
 function App() {
   return (
@@ -11,6 +13,11 @@ function App() {
       <div className="App">
         <Header />
       </div>
+      <ScrollToTop showUnder={500}>
+        <span>
+          <img src={Top} alt="scroll to top" height="30px" />
+        </span>
+      </ScrollToTop>
       <Switch>
         {publicRoutes.map((route, index) => {
           return (
