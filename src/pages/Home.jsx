@@ -7,7 +7,7 @@ import useGetDogs from '../hooks/useGetDogs';
 
 const Home = () => {
   const [pageNumber, setPageNumber] = useState(0);
-  const { dogs, loading, hasMore } = useGetDogs('airedale', pageNumber);
+  const { dogs, loading, hasMore } = useGetDogs('bulldog', pageNumber);
   const observer = useRef();
   const lastDogElementRef = useCallback(
     (node) => {
