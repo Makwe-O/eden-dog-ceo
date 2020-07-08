@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Card from '../components/common/Card';
+import useGetDogs from '../hooks/useGetDogs';
 
 const Home = () => {
+  const [pageNumber, setPageNumber] = useState(0);
+  const { dogs, loading, hasMore } = useGetDogs('airedale', pageNumber);
+  const observer = useRef();
+  const lastDogElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setTimeout(
+            () => setPageNumber((prevPageNumber) => prevPageNumber + 8),
+            2000,
+          );
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore],
+  );
+
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="container">
+      <div className="home__grid">
+        {dogs?.map((dog, index) =>
+          dogs.length === index + 1 ? (
+            <div key={index} ref={lastDogElementRef}>
+              <Card img={dog} />
+            </div>
+          ) : (
+            <div key={index}>
+              <Card img={dog} />
+            </div>
+          ),
+        )}
+      </div>
+      {loading && <p>Loading</p>}
     </div>
   );
 };

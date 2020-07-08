@@ -20,7 +20,7 @@ const Header = () => {
         </div>
         <div className="header__search">
           <Input placeholder="Type a specie of dog... e.g Corgi" />
-          <Button text="Search" style="btn" />
+          <Button text="Search" btnStyle="btn" />
         </div>
       </div>
     </div>
