@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import useGetDogs from '../hooks/useGetDogs';
 
@@ -28,13 +29,19 @@ const Home = () => {
       <div className="home__grid">
         {dogs?.map((dog, index) =>
           dogs.length === index + 1 ? (
-            <div key={index} ref={lastDogElementRef}>
+            <Link
+              to={{ pathname: `/dog/${index}`, image: dog }}
+              key={index}
+              ref={lastDogElementRef}>
               <Card img={dog} />
-            </div>
+            </Link>
           ) : (
-            <div key={index}>
+            <Link
+              to={{ pathname: `/dog/${index}`, image: dog }}
+              key={index}
+              ref={lastDogElementRef}>
               <Card img={dog} />
-            </div>
+            </Link>
           ),
         )}
       </div>
