@@ -4,10 +4,14 @@ import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import useGetDogs from '../hooks/useGetDogs';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 const Home = () => {
   const [pageNumber, setPageNumber] = useState(0);
-  const { dogs, loading, hasMore } = useGetDogs('bulldog', pageNumber);
+  const { dogs, loading, hasMore, hasError, error } = useGetDogs(
+    'bulldog',
+    pageNumber,
+  );
   const observer = useRef();
   const lastDogElementRef = useCallback(
     (node) => {
@@ -29,6 +33,7 @@ const Home = () => {
 
   return (
     <div className="container">
+      {hasError && <ErrorBoundary error={error} />}
       <div className="home__grid">
         {dogs?.map((dog, index) =>
           dogs.length === index + 1 ? (
