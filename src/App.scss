@@ -7,6 +7,7 @@ button {
   width: fit-content;
   margin-top: 10px;
   transition: 0.5;
+  background-color: #e3e3e3;
   &:hover {
     background-color: #d1d1d1;
   }
@@ -123,6 +124,7 @@ button {
 }
 
 .single {
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

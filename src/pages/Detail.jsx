@@ -1,8 +1,12 @@
 import React from 'react';
+import Button from '../components/common/Button';
+import { useHistory } from 'react-router-dom';
 
 const Detail = ({ match, location }) => {
+  const history = useHistory();
   return (
     <div className="container">
+      <Button text="Go Back" btnStyle="btn" onClick={() => history.goBack()} />
       <div className="single">
         <div
           style={{ backgroundImage: `url(${location.image})` }}
