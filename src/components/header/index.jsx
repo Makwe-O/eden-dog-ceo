@@ -33,7 +33,12 @@ const Header = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Button text="Search" btnStyle="btn" onClick={handleSearch} />
+          <Button
+            text="Search"
+            btnStyle="btn"
+            onClick={handleSearch}
+            disabled={search.length === 0}
+          />
         </div>
       </div>
     </div>

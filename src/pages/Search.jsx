@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import Card from '../components/common/Card';
 import useGetDogs from '../hooks/useGetDogs';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 const Search = ({ match }) => {
   const [pageNumber, setPageNumber] = useState(0);
-  const { dogs, loading, hasMore } = useGetDogs(
+  const { dogs, loading, hasMore, hasError, error } = useGetDogs(
     match.params.searchId,
     pageNumber,
   );
@@ -32,6 +33,7 @@ const Search = ({ match }) => {
   return (
     <div className="container">
       <h1>Search Result for {match.params.searchId}</h1>
+      {hasError && <ErrorBoundary error={error} />}
       <div className="home__grid">
         {dogs?.map((dog, index) =>
           dogs.length === index + 1 ? (
